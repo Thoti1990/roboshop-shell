@@ -50,7 +50,7 @@ then
     VALIDATE $? " creating roboshop user"
 else
     echo -e "roboshop user already exist $Y SKIPPING $N"
-if
+fi
 
 mkdir /app &>> $LOGFILE
 
