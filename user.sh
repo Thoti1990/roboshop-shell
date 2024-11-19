@@ -57,44 +57,44 @@ mkdir -p /app &>> $LOGFILE
 
 VALIDATE $? "creating app directory"
 
-curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip
+curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip &>> $LOGFILE
 
 VALIDATE $? "Downloding user application"
 
 cd /app 
 
-unzip -o /tmp/user.zip
+unzip -o /tmp/user.zip &>> $LOGFILE
 
 VALIDATE $? "unzipping user"
 
-npm install 
+npm install &>> $LOGFILE
 
 VALIDATE $? "Installing dependencess"
 
-cp /home/centos/roboshop-shell/user.service /etc/systemd/system/user.service
+cp /home/centos/roboshop-shell/user.service /etc/systemd/system/user.service &>> $LOGFILE
 
 VALIDATE $? "copping user service file"
 
-systemctl daemon-reload
+systemctl daemon-reload &>> $LOGFILE
 
 VALIDATE $? "user daemon reload"
 
-systemctl enable user 
+systemctl enable user &>> $LOGFILE
 
 VALIDATE $? "user enabling "
 
-systemctl start user
+systemctl start user &>> $LOGFILE
 
 VALIDATE $? "Start user"
 
-cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
+cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
 
 VALIDATE $? "copping mongo repo"
 
-dnf install mongodb-org-shell -y
+dnf install mongodb-org-shell -y &>> $LOGFILE
 
 VALIDATE $? "Installing mongodb client"
 
-mongo --host $MONGODB_HOST </app/schema/user.js
+mongo --host $MONGODB_HOST </app/schema/user.js &>> $LOGFILE
 
 VALIDATE $? "loading user data into mongoDB"
