@@ -70,26 +70,26 @@ cp /home/centos/roboshop-shell/shipping.service /etc/systemd/system/shipping.ser
 
 VALIDATE $? "copying shipping service file"
 
-systemctl daemon-reload
+systemctl daemon-reload &>> $LOGFILE
 
 VALIDATE $? "daemon reload "
 
-systemctl enable shipping 
+systemctl enable shipping &>> $LOGFILE
 
 VALIDATE $? "enable shipping"
 
-systemctl start shipping
+systemctl start shipping &>> $LOGFILE
 
 VALIDATE $? "started shipping"
 
-dnf install mysql -y
+dnf install mysql -y &>> $LOGFILE
 
 VALIDATE $? "Installing mysql client"
 
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/schema/shipping.sql  &>> $LOGFILE
 
 VALIDATE $? "loading shipping data"
 
-systemctl restart shipping
+systemctl restart shipping &>> $LOGFILE
 
 VALIDATE $? "restarted shipping"
