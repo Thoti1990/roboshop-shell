@@ -29,7 +29,7 @@ else
     echo "you are in root user"
 fi
 
-dnf install nginx -y  &>> $LOGFILE
+dnf install nginx -y &>> $LOGFILE
 
 VALIDATE $? "installing nginx"
 
