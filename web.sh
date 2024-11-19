@@ -45,7 +45,7 @@ rm -rf /usr/share/nginx/html/* &>> $LOGFILE
 
 VALIDATE $? "Removed defult website"
 
-curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip &>> $LOGFILE
+curl -L -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip &>> $LOGFILE
 
 VALIDATE $? "download web application"
 
